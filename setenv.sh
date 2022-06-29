@@ -15,7 +15,7 @@ export PORT_TARBALL_DEPS="curl gzip make m4 perl"
 export PORT_GIT_URL="https://github.com/autotools-mirror/gettext.git"
 export PORT_GIT_DEPS="git make m4 perl autoconf automake help2man makeinfo xz"
 
-export PORT_EXTRA_CFLAGS=""
+export PORT_EXTRA_CFLAGS="-qnocsect" # required because of multiple lock.c CUs
 export PORT_EXTRA_LDFLAGS=""
 
 if [ "${PORT_TYPE}x" = "TARBALLx" ]; then
