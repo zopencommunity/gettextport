@@ -1,0 +1,13 @@
+diff --git a/gettext-tools/misc/add-to-archive b/gettext-tools/misc/add-to-archive
+index fab9dd4..8cb1156 100755
+--- a/gettext-tools/misc/add-to-archive
++++ b/gettext-tools/misc/add-to-archive
+@@ -82,7 +82,7 @@ mkdir autopoint-files
+ (cd autopoint-files && tar xf ../archive.dir.tar)
+ mkdir autopoint-files/$pack_ver
+ (cd "$work_archive" && tar cf - .) | (cd autopoint-files/$pack_ver && tar xf -)
+-(cd autopoint-files && tar cf ../archive.dir.tar --owner=root --group=root *)
++(cd autopoint-files && tar cf ../archive.dir.tar --owner=root --group=root * && chtag -tcISO8859-1 ../archive.dir.tar)
+ 
+ # Clean up.
+ rm -rf autopoint-files

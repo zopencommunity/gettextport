@@ -1,0 +1,31 @@
+diff --git a/gettext-tools/src/urlget.c b/gettext-tools/src/urlget.c
+index 84e2004..112c0fe 100644
+--- a/gettext-tools/src/urlget.c
++++ b/gettext-tools/src/urlget.c
+@@ -83,7 +83,7 @@ static const struct option long_options[] =
+ 
+ /* Forward declaration of local functions.  */
+ _GL_NORETURN_FUNC static void usage (int status);
+-static void fetch (const char *url, const char *file);
++static void urlfetch (const char *url, const char *file);
+ 
+ 
+ int
+@@ -156,7 +156,7 @@ There is NO WARRANTY, to the extent permitted by law.\n\
+     error (EXIT_FAILURE, 0, _("expected two arguments"));
+ 
+   /* Fetch the contents.  */
+-  fetch (argv[optind], argv[optind + 1]);
++  urlfetch (argv[optind], argv[optind + 1]);
+ 
+   exit (EXIT_SUCCESS);
+ }
+@@ -262,7 +262,7 @@ execute_it (const char *progname,
+ 
+ /* Fetch the URL.  Upon error, use the FILE as fallback.  */
+ static void
+-fetch (const char *url, const char *file)
++urlfetch (const char *url, const char *file)
+ {
+   if (verbose)
+     {
