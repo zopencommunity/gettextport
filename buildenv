@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# Set up environment variables for general build tool to operate
+#
+if ! [ -f ./buildenv ]; then
+	echo "Need to source from the buildenv directory" >&2
+	return 0
+fi
+
+export ZOPEN_ROOT="${PWD}"
+export ZOPEN_TYPE="TARBALL"
+export ZOPEN_TARBALL_URL="https://ftp.gnu.org/gnu/gettext/gettext-0.21.tar.gz"
+export ZOPEN_TARBALL_DEPS="curl gzip tar make m4 perl"
+
+export ZOPEN_GIT_URL="https://github.com/autotools-mirror/gettext.git"
+export ZOPEN_GIT_DEPS="git make tar m4 perl autoconf automake help2man makeinfo xz"
+
+export ZOPEN_EXTRA_CFLAGS="-qnocsect" # required because of multiple lock.c CUs
+export ZOPEN_EXTRA_LDFLAGS=""
+
+if [ "${ZOPEN_TYPE}x" = "TARBALLx" ]; then
+	export ZOPEN_BOOTSTRAP=skip
+fi
