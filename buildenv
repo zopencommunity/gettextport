@@ -2,6 +2,7 @@
 #
 # Set up environment variables for general build tool to operate
 #
+
 export ZOPEN_TYPE="TARBALL"
 export ZOPEN_TARBALL_URL="https://ftp.gnu.org/gnu/gettext/gettext-0.21.tar.gz"
 export ZOPEN_TARBALL_DEPS="curl gzip tar make m4 perl"
