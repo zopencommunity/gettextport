@@ -7,12 +7,12 @@ export ZOPEN_TARBALL_URL="https://ftp.gnu.org/gnu/gettext/gettext-0.21.tar.gz"
 export ZOPEN_TARBALL_DEPS="curl gzip tar make m4 perl"
 
 export ZOPEN_GIT_URL="https://github.com/autotools-mirror/gettext.git"
-export ZOPEN_GIT_DEPS="git make tar m4 perl autoconf automake help2man makeinfo xz"
+export ZOPEN_GIT_DEPS="git make tar m4 perl autoconf automake help2man makeinfo xz ncurses"
 
-export ZOPEN_EXTRA_CFLAGS="-qnocsect" # required because of multiple lock.c CUs
-export ZOPEN_EXTRA_LDFLAGS=""
-
-export ZOPEN_CHECK="skip"
+#export ALT_SYSHDR="${ZOPEN_ROOT}/patches/PR3/include,${ZOPEN_ROOT}/gettext-0.21/gettext-runtime/gnulib-lib" 
+#export CC="${ZOPEN_ROOT}/bin/altxlclang"
+#export CFLAGS="-qascii -std=gnu11 -qnocsect -qenum=int"
+export ZOPEN_CONFIGURE_OPTS='--without-included-regex --disable-acl --disable-ncurses'
 
 if [ "${ZOPEN_TYPE}x" = "TARBALLx" ]; then
 	export ZOPEN_BOOTSTRAP=skip
