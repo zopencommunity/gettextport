@@ -9,9 +9,6 @@ export ZOPEN_TARBALL_DEPS="curl gzip tar make m4 perl"
 export ZOPEN_GIT_URL="https://github.com/autotools-mirror/gettext.git"
 export ZOPEN_GIT_DEPS="git make tar m4 perl autoconf automake help2man makeinfo xz ncurses"
 
-#export ALT_SYSHDR="${ZOPEN_ROOT}/patches/PR3/include,${ZOPEN_ROOT}/gettext-0.21/gettext-runtime/gnulib-lib" 
-#export CC="${ZOPEN_ROOT}/bin/altxlclang"
-#export CFLAGS="-qascii -std=gnu11 -qnocsect -qenum=int"
 export ZOPEN_EXTRA_CONFIGURE_OPTS='--disable-acl --disable-ncurses'
 
 if [ "${ZOPEN_TYPE}x" = "TARBALLx" ]; then
