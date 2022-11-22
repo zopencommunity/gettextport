@@ -12,7 +12,7 @@ export ZOPEN_GIT_DEPS="git make tar m4 perl autoconf automake help2man makeinfo 
 #export ALT_SYSHDR="${ZOPEN_ROOT}/patches/PR3/include,${ZOPEN_ROOT}/gettext-0.21/gettext-runtime/gnulib-lib" 
 #export CC="${ZOPEN_ROOT}/bin/altxlclang"
 #export CFLAGS="-qascii -std=gnu11 -qnocsect -qenum=int"
-export ZOPEN_CONFIGURE_OPTS='--without-included-regex --disable-acl --disable-ncurses'
+export ZOPEN_EXTRA_CONFIGURE_OPTS='--disable-acl --disable-ncurses'
 
 if [ "${ZOPEN_TYPE}x" = "TARBALLx" ]; then
 	export ZOPEN_BOOTSTRAP=skip
@@ -20,6 +20,30 @@ fi
 
 zopen_check_results()
 {
-  return 3 # non-functional
+#
+# Not running many tests yet
+#
+# TOTAL: 2
+# PASS:  1
+# SKIP:  0
+# XFAIL: 0
+# FAIL:  1
+# XPASS: 0
+# ERROR: 0
+  dir="$1"
+  pfx="$2"
+  chk="$1/$2_check.log"
+
+  # Echo the following information to guage build health
+
+  totalTests=$(grep '# TOTAL: ' ${chk} | tail -1 | awk ' { print $3; }')
+  actualFailures=$(grep '# FAIL: ' ${chk} | tail -1 | awk ' { print $3; }')
+  expectedFailures=1
+
+  echo "actualFailures:${actualFailures}"
+  echo "expectedFailures:${expectedFailures}"
+  echo "totalTests:${totalTests}"
+
+  return 0
 }
 
