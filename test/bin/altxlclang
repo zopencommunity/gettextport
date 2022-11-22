@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# Alternate XLCLANG that lets us set up our own system header directory in front of LE /usr/include/le
+#
+#set -x
+parms=$@
+#
+# This should not be necessary but the ALT_SYSHDR is not 'surviving' into parallel make for libtool
+#
+export ALT_SYSHDR="${HOME}/zopen/dev/gettextport/PR3/include,${HOME}/zopen/dev/gettextport/gettext-0.21/gettext-tools/gnulib-lib,${HOME}/zopen/dev/gettextport/gettext-0.21/gettext-runtime/gnulib-lib"
+if [ "${ALT_SYSHDR}x" = "x" ]; then
+  echo "Error. Do not use $0 unless you need alternate system headers." >&2
+  exit 8
+fi
+
+xlclang -qnose -I"${ALT_SYSHDR}" -I"/usr/include/le" ${parms}

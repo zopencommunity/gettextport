@@ -1,0 +1,16 @@
+diff --git a/libtextstyle/tests/dummy.c b/libtextstyle/tests/dummy.c
+index f9b7950..a74938e 100644
+--- a/libtextstyle/tests/dummy.c
++++ b/libtextstyle/tests/dummy.c
+@@ -36,7 +36,11 @@
+ /* This declaration ensures that the library will export at least 1 symbol.  */
+ int gl_dummy_symbol;
+ #else
++#ifdef __MVS__
++int gl_dummy_symbol;
++#else
+ /* This declaration is solely to ensure that after preprocessing
+    this file is never empty.  */
+ typedef int dummy;
+ #endif
++#endif
