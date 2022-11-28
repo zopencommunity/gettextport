@@ -3,3 +3,9 @@ gettext-0.21
 install
 log
 nohup.out
+test/hw/fr/
+test/hw/hello
+test/hw/hello.o
+test/hw/*.err
+test/hw/*.out
+test/hw/po/
