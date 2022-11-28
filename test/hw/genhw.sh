@@ -77,7 +77,7 @@ if ! cp po/fr/hello.mo ./fr/LC_MESSAGES/hello.mo ; then
   exit 4
 fi
 
-if ! xlclang -I"${GETTEXT_HOME}/include" -L"${GETTEXT_HOME}/lib" -ohello hello.c -lintl ; then
+if ! xlclang -qascii -I"${GETTEXT_HOME}/include" -L"${GETTEXT_HOME}/lib" -ohello hello.c -lintl ; then
   echo "Unable to compile hello program" >&2
   exit 16
 fi
