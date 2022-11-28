@@ -82,10 +82,16 @@ if ! xlclang -qascii -I"${GETTEXT_HOME}/include" -L"${GETTEXT_HOME}/lib" -ohello
   exit 16
 fi
 
-./hello
+enout=$(./hello)
+frout=$(LANG=fr_FR ./hello)
 
-#
-# Unfortunately, this comes out in English! Issue: https://github.com/ZOSOpenTools/gettextport/issues/11
-# 
-LANG=fr_FR ./hello
+if [ "${enout}x" != "Hello Worldx" ]; then 
+  echo "default hello program printed out the wrong message in English: ${enout}" >&2
+  exit 4
+fi
+
+if [ "${frout}x" != "Bonjour le mondex" ]; then 
+  echo "default hello program printed out the wrong message in French: ${frout}" >&2
+  exit 4
+fi
 
