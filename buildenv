@@ -16,6 +16,7 @@ export ZOPEN_GIT_DEPS="git make tar m4 perl autoconf automake help2man makeinfo 
 export ZOPEN_EXTRA_CONFIGURE_OPTS='--disable-acl --disable-ncurses'
 
 export ZOPEN_CHECK_OPTS='-i check' # force make to keep going after first test suite has failures
+export ZOPEN_CHECK_TIMEOUT=30000 # 8 hours and a bit
 
 if [ "${ZOPEN_TYPE}x" = "TARBALLx" ]; then
 	export ZOPEN_BOOTSTRAP=skip
