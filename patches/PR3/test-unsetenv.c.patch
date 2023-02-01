@@ -1,0 +1,20 @@
+diff --git a/gettext-tools/gnulib-tests/test-unsetenv.c b/gettext-tools/gnulib-tests/test-unsetenv.c
+index f912e79..630c059 100644
+--- a/gettext-tools/gnulib-tests/test-unsetenv.c
++++ b/gettext-tools/gnulib-tests/test-unsetenv.c
+@@ -32,6 +32,7 @@ SIGNATURE_CHECK (unsetenv, int, (char const *));
+ int
+ main (void)
+ {
++#ifndef __MVS__
+   char entry[] = "b=2";
+ 
+   /* Test removal when multiple entries present.  */
+@@ -49,6 +50,7 @@ main (void)
+   errno = 0;
+   ASSERT (unsetenv ("a=b") == -1);
+   ASSERT (errno == EINVAL);
++#endif
+ #if 0
+   /* glibc and gnulib's implementation guarantee this, but POSIX no
+      longer requires it: http://austingroupbugs.net/view.php?id=185  */
