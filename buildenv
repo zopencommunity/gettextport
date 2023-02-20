@@ -8,10 +8,10 @@ export ZOPEN_TARBALL_URL="https://ftp.gnu.org/gnu/gettext/gettext-0.21.tar.gz"
 #
 # Needs tr for testing
 #
-export ZOPEN_TARBALL_DEPS="curl gzip tar make m4 perl coreutils"
+export ZOPEN_TARBALL_DEPS="curl gzip tar make m4 perl coreutils zoslib"
 
 export ZOPEN_GIT_URL="https://github.com/autotools-mirror/gettext.git"
-export ZOPEN_GIT_DEPS="git make tar m4 perl autoconf automake help2man makeinfo xz ncurses"
+export ZOPEN_GIT_DEPS="git make tar m4 perl autoconf automake help2man texinfo xz ncurses"
 
 export ZOPEN_EXTRA_CONFIGURE_OPTS='--disable-acl --disable-ncurses'
 
