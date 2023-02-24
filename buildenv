@@ -8,12 +8,12 @@ export ZOPEN_TARBALL_URL="https://ftp.gnu.org/gnu/gettext/gettext-0.21.tar.gz"
 #
 # Needs tr for testing
 #
-export ZOPEN_TARBALL_DEPS="curl gzip tar make m4 perl coreutils zoslib"
+export ZOPEN_TARBALL_DEPS="curl gzip tar make m4 perl coreutils zoslib autoconf automake ncurses"
 
 export ZOPEN_GIT_URL="https://github.com/autotools-mirror/gettext.git"
 export ZOPEN_GIT_DEPS="git make tar m4 perl autoconf automake help2man texinfo xz ncurses"
 
-export ZOPEN_EXTRA_CONFIGURE_OPTS='--disable-acl --disable-ncurses'
+export ZOPEN_EXTRA_CONFIGURE_OPTS='--disable-acl'
 
 export ZOPEN_CHECK_OPTS='-i check' # force make to keep going after first test suite has failures
 export ZOPEN_CHECK_TIMEOUT=30000 # 8 hours and a bit
