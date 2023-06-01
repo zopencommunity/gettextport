@@ -1,0 +1,60 @@
+diff --git a/gettext-runtime/libasprintf/configure b/gettext-runtime/libasprintf/configure
+index 59e6c28..0cf472b 100755
+--- a/gettext-runtime/libasprintf/configure
++++ b/gettext-runtime/libasprintf/configure
+@@ -7304,6 +7304,10 @@ aix[4-9]*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
++openedition)
++  lt_cv_deplibs_check_method=pass_all
++  ;;
++
+ beos*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+diff --git a/gettext-runtime/configure b/gettext-runtime/configure
+index a41d886..eb4cd2e 100755
+--- a/gettext-runtime/configure
++++ b/gettext-runtime/configure
+@@ -8864,6 +8864,10 @@ aix[4-9]*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
++openedition)
++  lt_cv_deplibs_check_method=pass_all
++  ;;
++
+ beos*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+diff --git a/gettext-tools/configure b/gettext-tools/configure
+index 9737c50..9640332 100755
+--- a/gettext-tools/configure
++++ b/gettext-tools/configure
+@@ -11008,6 +11008,10 @@ aix[4-9]*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
++openedition)
++  lt_cv_deplibs_check_method=pass_all
++  ;;
++
+ beos*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+diff --git a/libtextstyle/configure b/libtextstyle/configure
+index e63e68c..01b0a42 100755
+--- a/libtextstyle/configure
++++ b/libtextstyle/configure
+@@ -8301,6 +8301,10 @@ aix[4-9]*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
+ 
++openedition)
++  lt_cv_deplibs_check_method=pass_all
++  ;;
++
+ beos*)
+   lt_cv_deplibs_check_method=pass_all
+   ;;
