@@ -2,6 +2,7 @@ gettext
 gettext-0.21
 install
 log
+log.STABLE
 nohup.out
 test/hw/fr/
 test/hw/hello
