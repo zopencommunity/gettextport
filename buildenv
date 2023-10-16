@@ -59,3 +59,9 @@ zopen_get_version()
 {
   ./gettext-runtime/src/gettext --version | head -1 | awk '{print $4; }'
 }
+
+zopen_append_to_zoslib_env() {
+ cat <<EOF
+ASCII_TERMINFO|set|PROJECT_ROOT/../../ncurses/ncurses/share/terminfo/
+EOF
+}
