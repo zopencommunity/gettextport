@@ -1,13 +1,8 @@
-#
-# Set up environment variables for general build tool to operate
-#
+# bump: gettext-version /GETTEXT_VERSION="(.*)"/ https://ftp.gnu.org/gnu/gettext/|re:/href="gettext-([\d.]+).tar.gz"/$1/|semver:*
+GETTEXT_VERSION="0.21"
 
 export ZOPEN_BUILD_LINE="STABLE"
-export ZOPEN_STABLE_URL="https://ftp.gnu.org/gnu/gettext/gettext-0.21.tar.gz"
-
-#
-# Needs tr for testing
-#
+export ZOPEN_STABLE_URL="https://ftp.gnu.org/gnu/gettext/gettext-${GETTEXT_VERSION}.tar.gz"
 export ZOPEN_STABLE_DEPS="curl gzip tar make m4 perl coreutils zoslib autoconf automake ncurses"
 
 export ZOPEN_DEV_URL="https://github.com/autotools-mirror/gettext.git"
@@ -18,7 +13,7 @@ export ZOPEN_EXTRA_CONFIGURE_OPTS='--disable-acl'
 export ZOPEN_CHECK_OPTS='-i check' # force make to keep going after first test suite has failures
 export ZOPEN_CHECK_TIMEOUT=30000 # 8 hours and a bit
 
-if [ "${ZOPEN_BUILD_LINE}x" = "TARBALLx" ]; then
+if [ "${ZOPEN_BUILD_LINE}x" = "STABLEx" ]; then
 	export ZOPEN_BOOTSTRAP=skip
 fi
 
