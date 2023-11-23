@@ -13,6 +13,8 @@ export ZOPEN_EXTRA_CONFIGURE_OPTS='--disable-acl'
 export ZOPEN_CHECK_OPTS='-i check' # force make to keep going after first test suite has failures
 export ZOPEN_CHECK_TIMEOUT=30000 # 8 hours and a bit
 
+export ZOPEN_COMP=clang
+
 if [ "${ZOPEN_BUILD_LINE}x" = "STABLEx" ]; then
 	export ZOPEN_BOOTSTRAP=skip
 fi
