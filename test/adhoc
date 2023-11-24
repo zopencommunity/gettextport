@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+cd ..
+export ROOT=$PWD
+cd gettext-0.22.4/libtextstyle/adhoc-tests
+
+#bash ../libtool --tag=CC   --mode=link clang  -fzos-le-char-mode=ascii -std=gnu11 -mnocsect -fno-short-enums -fno-builtin-malloc -fno-builtin-calloc -fno-builtin-realloc -mzos-target=zosv2r4 -O3  -I$ZOPEN_ROOTFS/usr/local/zopen/ncurses/ncurses-6.4.20231114_180107.zos/include -I$ZOPEN_ROOTFS/usr/local/zopen/ncurses/ncurses-6.4.20231114_180107.zos/include -isystem $ZOPEN_ROOTFS/usr/local/zopen/zoslib/zoslib-zopen.20231122_080123.zos/include -include $ZOPEN_ROOTFS/usr/local/zopen/zoslib/zoslib-zopen.20231122_080123.zos/include/zos-v2r5-symbolfixes.h -Wl,-bedit=no -L$ZOPEN_ROOTFS/usr/local/zopen/ncurses/ncurses-6.4.20231114_180107.zos/lib -L$ZOPEN_ROOTFS/usr/local/zopen/ncurses/ncurses-6.4.20231114_180107.zos/lib -L$ZOPEN_ROOTFS/usr/local/zopen/zoslib/zoslib-zopen.20231122_080123.zos/lib -o hello hello.o ../lib/libtextstyle.la -lncurses -lncurses -lzoslib $ZOPEN_ROOTFS/usr/local/zopen/zoslib/zoslib-zopen.20231122_080123.zos/lib/celquopt.s.o -lzoslib-supp $ROOT/gettext-0.22.4/.zoslib_hooks/zoslib_env_hook.c.o
+#
+
+xlc++ -Wl,LP64 -Wl,xref,map -L$ZOPEN_ROOTFS/usr/local/zopen/ncurses/ncurses-6.4.20231114_180107.zos/lib -L$ZOPEN_ROOTFS/usr/local/zopen/ncurses/ncurses-6.4.20231114_180107.zos/lib -L$ZOPEN_ROOTFS/usr/local/zopen/zoslib/zoslib-zopen.20231122_080123.zos/lib -o hello hello.o $ROOT/gettext-0.22.4/libtextstyle/lib/.libs/libtextstyle.a -lncurses -lncurses -lzoslib $ZOPEN_ROOTFS/usr/local/zopen/zoslib/zoslib-zopen.20231122_080123.zos/lib/celquopt.s.o -lzoslib-supp $ROOT/gettext-0.22.4/.zoslib_hooks/zoslib_env_hook.c.o
