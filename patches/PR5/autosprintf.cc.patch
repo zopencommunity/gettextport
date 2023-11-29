@@ -7,7 +7,7 @@ index 429b8e8..2c6671f 100644
      va_list args;
      va_start (args, format);
 -    if (vasprintf (&str, format, args) < 0)
-+    if (std::vasprintf (&str, format, args) < 0)
++    if ( vasprintf (&str, format, args) < 0)
        str = NULL;
      va_end (args);
    }
