@@ -1,5 +1,5 @@
 # bump: gettext-version /GETTEXT_VERSION="(.*)"/ https://ftp.gnu.org/gnu/gettext/|re:/href="gettext-([\d.]+).tar.gz"/$1/|semver:*
-GETTEXT_VERSION="0.21"
+GETTEXT_VERSION="0.22.5"
 
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_STABLE_URL="https://ftp.gnu.org/gnu/gettext/gettext-${GETTEXT_VERSION}.tar.gz"
