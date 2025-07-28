@@ -1,0 +1,39 @@
+diff --git i/gettext-runtime/intl/bindtextdom.c w/gettext-runtime/intl/bindtextdom.c
+index 57cf1f4..d6b06e9 100644
+--- i/gettext-runtime/intl/bindtextdom.c
++++ w/gettext-runtime/intl/bindtextdom.c
+@@ -21,6 +21,7 @@
+ #include <stddef.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <sys/stat.h>
+ 
+ #include "gettextP.h"
+ #ifdef _LIBC
+@@ -440,6 +441,26 @@ BINDTEXTDOMAIN (const char *domainname, const char *dirname)
+           dirname = dirname_with_drive;
+         }
+     }
++#endif
++#ifdef __MVS__
++  {
++    const char *textdomain_env = getenv("TEXTDOMAINDIR");
++    if (textdomain_env && textdomain_env[0] != '\0') {
++      dirname = textdomain_env;
++    } else {
++      const char *progdir = __getprogramdir();
++      if (progdir && progdir[0] != '\0') {
++        static char resolved_locale_path[PATH_MAX];
++        snprintf(resolved_locale_path, sizeof(resolved_locale_path),
++                 "%s/../share/locale", progdir);
++
++        struct stat st;
++        if (stat(resolved_locale_path, &st) == 0 && S_ISDIR(st.st_mode)) {
++          dirname = resolved_locale_path;
++        }
++      }
++    }
++  }
+ #endif
+   set_binding_values (domainname, &dirname, NULL, NULL);
+ #ifdef __EMX__

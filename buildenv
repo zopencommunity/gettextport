@@ -3,12 +3,12 @@ GETTEXT_VERSION="0.21"
 
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_STABLE_URL="https://ftp.gnu.org/gnu/gettext/gettext-${GETTEXT_VERSION}.tar.gz"
-export ZOPEN_STABLE_DEPS="curl gzip tar make m4 perl coreutils zoslib autoconf automake ncurses"
+export ZOPEN_STABLE_DEPS="curl gzip tar make m4 perl coreutils zoslib autoconf automake ncurses libiconv"
 
 export ZOPEN_DEV_URL="https://github.com/autotools-mirror/gettext.git"
-export ZOPEN_DEV_DEPS="git make tar m4 perl autoconf automake help2man texinfo xz ncurses"
+export ZOPEN_DEV_DEPS="git make tar m4 perl autoconf automake help2man texinfo xz ncurses libiconv"
 
-export ZOPEN_EXTRA_CONFIGURE_OPTS='--disable-acl'
+export ZOPEN_EXTRA_CONFIGURE_OPTS='--disable-acl  --enable-relocatable'
 
 export ZOPEN_CHECK_OPTS='-i check' # force make to keep going after first test suite has failures
 export ZOPEN_CHECK_TIMEOUT=30000 # 8 hours and a bit

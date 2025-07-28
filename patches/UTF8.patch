@@ -21,9 +21,18 @@ index 721c8a9..ffc2851 100644
  # else
          /* The canonical name cannot be determined.  */
 diff --git i/gettext-runtime/intl/localcharset.c w/gettext-runtime/intl/localcharset.c
-index ec75427..de353f7 100644
+index ec75427..6578469 100644
 --- i/gettext-runtime/intl/localcharset.c
 +++ w/gettext-runtime/intl/localcharset.c
+@@ -1021,7 +1021,7 @@ locale_charset (void)
+     /* On some platforms, UTF-8 locales are the most frequently used ones.
+        Speed up the common case and slow down the less common cases by
+        testing for this case first.  */
+-#  if defined __OpenBSD__ || (defined __APPLE__ && defined __MACH__) || defined __sun || defined __CYGWIN__
++#  if defined __OpenBSD__ || (defined __APPLE__ && defined __MACH__) || defined __sun || defined __CYGWIN__ || defined __MVS__
+     if (strcmp (codeset, "UTF-8") == 0)
+       goto done_table_lookup;
+     else
 @@ -1061,7 +1061,7 @@ locale_charset (void)
          /* Did not find it in the table.  */
          /* On Mac OS X, all modern locales use the UTF-8 encoding.
@@ -73,3 +82,38 @@ index 721c8a9..c84fbdd 100644
          codeset = "UTF-8";
  # else
          /* The canonical name cannot be determined.  */
+diff --git i/gettext-tools/libgettextpo/localcharset.c w/gettext-tools/libgettextpo/localcharset.c
+index 721c8a9..ffc2851 100644
+--- i/gettext-tools/libgettextpo/localcharset.c
++++ w/gettext-tools/libgettextpo/localcharset.c
+@@ -1061,7 +1061,7 @@ locale_charset (void)
+         /* Did not find it in the table.  */
+         /* On Mac OS X, all modern locales use the UTF-8 encoding.
+            BeOS and Haiku have a single locale, and it has UTF-8 encoding.  */
+-# if (defined __APPLE__ && defined __MACH__) || defined __BEOS__ || defined __HAIKU__
++# if (defined __APPLE__ && defined __MACH__) || defined __BEOS__ || defined __HAIKU__ || defined __MVS__
+         codeset = "UTF-8";
+ # else
+         /* Don't return an empty string.  GNU libc and GNU libiconv interpret
+@@ -1134,7 +1134,7 @@ locale_charset (void)
+         /* Did not find it in the table.  */
+         /* On Mac OS X, all modern locales use the UTF-8 encoding.
+            BeOS and Haiku have a single locale, and it has UTF-8 encoding.  */
+-# if (defined __APPLE__ && defined __MACH__) || defined __BEOS__ || defined __HAIKU__
++# if (defined __APPLE__ && defined __MACH__) || defined __BEOS__ || defined __HAIKU__ || defined __MVS__
+         codeset = "UTF-8";
+ # else
+         /* The canonical name cannot be determined.  */
+diff --git i/gettext-tools/tests/intl-4-prg.c w/gettext-tools/tests/intl-4-prg.c
+index df4c6fe..1ba7019 100644
+--- i/gettext-tools/tests/intl-4-prg.c
++++ w/gettext-tools/tests/intl-4-prg.c
+@@ -58,7 +58,7 @@ main (int argc, char *argv[])
+   /* Here we expect output in ISO-8859-1.
+      Except on Darwin 7 or newer and on BeOS and Haiku, for which
+      locale_charset () always returns "UTF-8" (see localcharset.c).  */
+-#if !((defined __APPLE__ && defined __MACH__) || defined __BEOS__ || defined __HAIKU__)
++#if !((defined __APPLE__ && defined __MACH__) || defined __BEOS__ || defined __HAIKU__ || defined __MVS__)
+   s = gettext ("cheese");
+   if (strcmp (s, "K\344se"))
+     {
