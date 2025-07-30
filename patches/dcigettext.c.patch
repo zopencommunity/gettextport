@@ -1,0 +1,14 @@
+diff --git i/gettext-runtime/intl/dcigettext.c w/gettext-runtime/intl/dcigettext.c
+index 0e9710b..d3b83d0 100644
+--- i/gettext-runtime/intl/dcigettext.c
++++ w/gettext-runtime/intl/dcigettext.c
+@@ -1715,6 +1715,9 @@ get_output_charset (struct binding *domainbinding)
+ # ifdef _LIBC
+ 	  return _NL_CURRENT (LC_CTYPE, CODESET);
+ # else
++# if __MVS__
++    return "UTF-8";
++# endif
+ #  if HAVE_ICONV
+ 	  return locale_charset ();
+ #  endif
