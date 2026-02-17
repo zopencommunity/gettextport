@@ -1,3 +1,17 @@
+diff --git a/gettext-tools/autotools/cvsuser.c b/gettext-tools/autotools/cvsuser.c
+index 22f5a50..1288dbc 100644
+--- a/gettext-tools/autotools/cvsuser.c
++++ b/gettext-tools/autotools/cvsuser.c
+@@ -50,7 +50,9 @@ struct passwd * getpwnam (const char *name)
+   pw.pw_passwd = "*";
+   pw.pw_uid = 100;
+   pw.pw_gid = 100;
++#ifndef __MVS__
+   pw.pw_gecos = "";
++#endif
+   pw.pw_dir = "/";
+   pw.pw_shell = "/bin/sh";
+ 
 diff --git a/gettext-tools/src/msginit.c b/gettext-tools/src/msginit.c
 index 228d1d0..d0950d1 100644
 --- a/gettext-tools/src/msginit.c

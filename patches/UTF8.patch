@@ -20,6 +20,37 @@ index 22dc38d..7c1dead 100644
          codeset = "UTF-8";
  # else
          /* The canonical name cannot be determined.  */
+diff --git a/gettext-runtime/intl/gnulib-lib/localcharset.c b/gettext-runtime/intl/gnulib-lib/localcharset.c
+index 22dc38d..cf88748 100644
+--- a/gettext-runtime/intl/gnulib-lib/localcharset.c
++++ b/gettext-runtime/intl/gnulib-lib/localcharset.c
+@@ -982,7 +982,7 @@ locale_charset (void)
+     /* On some platforms, UTF-8 locales are the most frequently used ones.
+        Speed up the common case and slow down the less common cases by
+        testing for this case first.  */
+-#  if defined __OpenBSD__ || (defined __APPLE__ && defined __MACH__) || defined __sun || defined __CYGWIN__
++#  if defined __OpenBSD__ || (defined __APPLE__ && defined __MACH__) || defined __sun || defined __CYGWIN__ || defined __MVS__
+     if (streq (codeset, "UTF-8"))
+       goto done_table_lookup;
+     else
+@@ -1022,7 +1022,7 @@ locale_charset (void)
+         /* Did not find it in the table.  */
+         /* On Mac OS X, all modern locales use the UTF-8 encoding.
+            BeOS and Haiku have a single locale, and it has UTF-8 encoding.  */
+-# if (defined __APPLE__ && defined __MACH__) || defined __BEOS__ || defined __HAIKU__
++# if (defined __APPLE__ && defined __MACH__) || defined __BEOS__ || defined __HAIKU__ || defined __MVS__
+         codeset = "UTF-8";
+ # else
+         /* Don't return an empty string.  GNU libc and GNU libiconv interpret
+@@ -1095,7 +1095,7 @@ locale_charset (void)
+         /* Did not find it in the table.  */
+         /* On Mac OS X, all modern locales use the UTF-8 encoding.
+            BeOS and Haiku have a single locale, and it has UTF-8 encoding.  */
+-# if (defined __APPLE__ && defined __MACH__) || defined __BEOS__ || defined __HAIKU__
++# if (defined __APPLE__ && defined __MACH__) || defined __BEOS__ || defined __HAIKU__ || defined __MVS__
+         codeset = "UTF-8";
+ # else
+         /* The canonical name cannot be determined.  */
 diff --git a/gettext-tools/gnulib-lib/localcharset.c b/gettext-tools/gnulib-lib/localcharset.c
 index 22dc38d..cf88748 100644
 --- a/gettext-tools/gnulib-lib/localcharset.c
@@ -52,9 +83,18 @@ index 22dc38d..cf88748 100644
  # else
          /* The canonical name cannot be determined.  */
 diff --git a/gettext-tools/libgettextpo/localcharset.c b/gettext-tools/libgettextpo/localcharset.c
-index 22dc38d..7c1dead 100644
+index 22dc38d..cf88748 100644
 --- a/gettext-tools/libgettextpo/localcharset.c
 +++ b/gettext-tools/libgettextpo/localcharset.c
+@@ -982,7 +982,7 @@ locale_charset (void)
+     /* On some platforms, UTF-8 locales are the most frequently used ones.
+        Speed up the common case and slow down the less common cases by
+        testing for this case first.  */
+-#  if defined __OpenBSD__ || (defined __APPLE__ && defined __MACH__) || defined __sun || defined __CYGWIN__
++#  if defined __OpenBSD__ || (defined __APPLE__ && defined __MACH__) || defined __sun || defined __CYGWIN__ || defined __MVS__
+     if (streq (codeset, "UTF-8"))
+       goto done_table_lookup;
+     else
 @@ -1022,7 +1022,7 @@ locale_charset (void)
          /* Did not find it in the table.  */
          /* On Mac OS X, all modern locales use the UTF-8 encoding.
