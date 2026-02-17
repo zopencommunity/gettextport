@@ -1,30 +1,16 @@
-diff --git a/gettext-tools/misc/cvsuser.c b/gettext-tools/misc/cvsuser.c
-index eefe9dd..cbd244f 100644
---- a/gettext-tools/misc/cvsuser.c
-+++ b/gettext-tools/misc/cvsuser.c
-@@ -49,7 +49,9 @@ struct passwd * getpwnam (const char *name)
-   pw.pw_passwd = "*";
-   pw.pw_uid = 100;
-   pw.pw_gid = 100;
-+#ifndef __MVS__
-   pw.pw_gecos = "";
-+#endif
-   pw.pw_dir = "/";
-   pw.pw_shell = "/bin/sh";
- 
 diff --git a/gettext-tools/src/msginit.c b/gettext-tools/src/msginit.c
-index f00c374..cb2ad6b 100644
+index 228d1d0..d0950d1 100644
 --- a/gettext-tools/src/msginit.c
 +++ b/gettext-tools/src/msginit.c
-@@ -1144,6 +1144,7 @@ get_user_fullname ()
-   struct passwd *pwd;
- 
-   pwd = get_user_pwd ();
+@@ -1100,6 +1100,7 @@ get_user_fullname ()
+ {
+ #if HAVE_PWD_H
+   struct passwd *pwd = get_user_pwd ();
 +#ifndef __MVS__
    if (pwd != NULL)
      {
-       const char *fullname;
-@@ -1162,6 +1163,7 @@ get_user_fullname ()
+       /* Return the pw_gecos field, up to the first comma (if any).  */
+@@ -1114,6 +1115,7 @@ get_user_fullname ()
  
        return result;
      }
@@ -33,10 +19,10 @@ index f00c374..cb2ad6b 100644
  
    return NULL;
 diff --git a/libtextstyle/examples/color-hello/hello.c b/libtextstyle/examples/color-hello/hello.c
-index 272053d..c6ccf1d 100644
+index 5b5221d..e64b65a 100644
 --- a/libtextstyle/examples/color-hello/hello.c
 +++ b/libtextstyle/examples/color-hello/hello.c
-@@ -84,7 +84,11 @@ get_fullname (void)
+@@ -85,7 +85,11 @@ get_fullname (void)
        struct passwd *pwd = getpwnam (name);
        if (pwd != NULL)
          {

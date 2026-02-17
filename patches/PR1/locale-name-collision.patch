@@ -1,8 +1,8 @@
 diff --git a/gettext-runtime/intl/gettextP.h b/gettext-runtime/intl/gettextP.h
-index 1efeb19..15384a0 100644
+index 1ac369e..e5ef60f 100644
 --- a/gettext-runtime/intl/gettextP.h
 +++ b/gettext-runtime/intl/gettextP.h
-@@ -263,7 +263,7 @@ struct loaded_l10nfile *_nl_find_domain (const char *__dirname,
+@@ -229,7 +229,7 @@ struct loaded_l10nfile *_nl_find_domain (const char *__dirname,
  #if defined _WIN32 && !defined __CYGWIN__
  					 const wchar_t *__wdirname,
  #endif
@@ -10,4 +10,4 @@ index 1efeb19..15384a0 100644
 +					 char *__localename,
  					 const char *__domainname,
  					 struct binding *__domainbinding)
-      internal_function;
+      attribute_hidden;

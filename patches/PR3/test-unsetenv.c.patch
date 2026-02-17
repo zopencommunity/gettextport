@@ -1,5 +1,5 @@
 diff --git a/gettext-tools/gnulib-tests/test-unsetenv.c b/gettext-tools/gnulib-tests/test-unsetenv.c
-index f912e79..7601fa8 100644
+index 242d17e..cb11966 100644
 --- a/gettext-tools/gnulib-tests/test-unsetenv.c
 +++ b/gettext-tools/gnulib-tests/test-unsetenv.c
 @@ -32,6 +32,10 @@ SIGNATURE_CHECK (unsetenv, int, (char const *));
@@ -10,14 +10,14 @@ index f912e79..7601fa8 100644
 +  * https://github.com/ZOSOpenTools/gettextport/issues/15
 +  * This guard can be removed once the fix for issue is provided by LE team*/
 +#ifndef __MVS__
-   char entry[] = "b=2";
+   /* Static to pacify gcc -Wanalyzer-putenv-of-auto-var.  */
+   static char entry[] = "b=2";
  
-   /* Test removal when multiple entries present.  */
-@@ -49,6 +53,7 @@ main (void)
+@@ -50,6 +54,7 @@ main (void)
    errno = 0;
    ASSERT (unsetenv ("a=b") == -1);
    ASSERT (errno == EINVAL);
 +#endif
  #if 0
    /* glibc and gnulib's implementation guarantee this, but POSIX no
-      longer requires it: http://austingroupbugs.net/view.php?id=185  */
+      longer requires it: https://austingroupbugs.net/view.php?id=185  */
