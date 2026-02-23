@@ -35,35 +35,36 @@ index bd25905..aeaceca 100644
  #include <fcntl.h>
  #include <errno.h>
 diff --git a/gettext-tools/gnulib-tests/test-putenv.c b/gettext-tools/gnulib-tests/test-putenv.c
-index 9ea08b0..45a1452 100644
+index 9ea08b0..62493c8 100644
 --- a/gettext-tools/gnulib-tests/test-putenv.c
 +++ b/gettext-tools/gnulib-tests/test-putenv.c
-@@ -31,6 +31,7 @@ SIGNATURE_CHECK (putenv, int, (char *));
+@@ -31,6 +31,13 @@ SIGNATURE_CHECK (putenv, int, (char *));
  int
  main (void)
  {
-+#ifndef __MVS__
++#ifdef __MVS__
++  /* Skipping test on MVS platform due to known issue:
++   * https://github.com/ZOSOpenTools/gettextport/issues/15
++   * This can be removed once the fix is provided by LE team */
++  fputs ("Skipping test: known issue on MVS platform\n", stderr);
++  return 77;
++#endif
    char *ptr;
  
    /* Verify the environment is clean.  */
-@@ -62,6 +63,6 @@ main (void)
-     ASSERT (putenv (var) == 0);
-     ASSERT (getenv ("TEST_VAR") == NULL);
-   }
--
-+#endif
-   return test_exit_status;
- }
 diff --git a/gettext-tools/gnulib-tests/test-random.c b/gettext-tools/gnulib-tests/test-random.c
-index ecc873d..b1f460b 100644
+index ecc873d..73b5f25 100644
 --- a/gettext-tools/gnulib-tests/test-random.c
 +++ b/gettext-tools/gnulib-tests/test-random.c
-@@ -21,7 +21,7 @@
+@@ -21,7 +21,11 @@
  #include "signature.h"
  SIGNATURE_CHECK (srandom, void, (unsigned int));
  SIGNATURE_CHECK (initstate, char *, (unsigned int, char *, size_t));
--SIGNATURE_CHECK (setstate, char *, (char *));
++#ifdef __MVS__
 +SIGNATURE_CHECK (setstate, char *, (const char *));
++#else
+ SIGNATURE_CHECK (setstate, char *, (char *));
++#endif
  SIGNATURE_CHECK (random, long, (void));
  
  #include <time.h>
@@ -106,25 +107,28 @@ index b5258de..0a24506 100644
  struct timeval a;
  
 diff --git a/gettext-tools/gnulib-tests/test-unsetenv.c b/gettext-tools/gnulib-tests/test-unsetenv.c
-index 242d17e..cb11966 100644
+index 242d17e..cb75375 100644
 --- a/gettext-tools/gnulib-tests/test-unsetenv.c
 +++ b/gettext-tools/gnulib-tests/test-unsetenv.c
-@@ -32,6 +32,10 @@ SIGNATURE_CHECK (unsetenv, int, (char const *));
+@@ -32,6 +32,13 @@ SIGNATURE_CHECK (unsetenv, int, (char const *));
  int
  main (void)
  {
-+ /*The guard is added as a workaround for issue 
-+  * https://github.com/ZOSOpenTools/gettextport/issues/15
-+  * This guard can be removed once the fix for issue is provided by LE team*/
-+#ifndef __MVS__
++#ifdef __MVS__
++  /* Skipping test on MVS platform due to known issue:
++   * https://github.com/ZOSOpenTools/gettextport/issues/15
++   * This can be removed once the fix is provided by LE team */
++  fputs ("Skipping test: known issue on MVS platform\n", stderr);
++  return 77;
++#endif
    /* Static to pacify gcc -Wanalyzer-putenv-of-auto-var.  */
    static char entry[] = "b=2";
  
-@@ -50,6 +54,7 @@ main (void)
+@@ -50,6 +57,7 @@ main (void)
    errno = 0;
    ASSERT (unsetenv ("a=b") == -1);
    ASSERT (errno == EINVAL);
-+#endif
++
  #if 0
    /* glibc and gnulib's implementation guarantee this, but POSIX no
       longer requires it: https://austingroupbugs.net/view.php?id=185  */

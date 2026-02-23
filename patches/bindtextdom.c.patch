@@ -1,5 +1,5 @@
 diff --git a/gettext-runtime/intl/bindtextdom.c b/gettext-runtime/intl/bindtextdom.c
-index c8b14bb..a22d5f2 100644
+index c8b14bb..895f05a 100644
 --- a/gettext-runtime/intl/bindtextdom.c
 +++ b/gettext-runtime/intl/bindtextdom.c
 @@ -23,6 +23,7 @@
@@ -10,18 +10,20 @@ index c8b14bb..a22d5f2 100644
  
  #include "gettextP.h"
  #ifdef _LIBC
-@@ -43,6 +44,10 @@
+@@ -43,6 +44,12 @@
  
  #include "flexmember.h"
  
 +#ifdef __MVS__
-+#include <zos-base.h>
++# include <limits.h>
++# include <stdio.h>
++# include <zos-base.h>
 +#endif
 +
  /* @@ end of prolog @@ */
  
  
-@@ -402,6 +407,26 @@ BINDTEXTDOMAIN (const char *domainname, const char *dirname)
+@@ -402,6 +409,26 @@ BINDTEXTDOMAIN (const char *domainname, const char *dirname)
            dirname = dirname_with_drive;
          }
      }

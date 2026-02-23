@@ -19,18 +19,6 @@ fi
 
 zopen_check_results()
 {
-#
-# This runs a number of sub-directories of tests. We want to get 'gettext-tools' test results
-#============================================================================
-#Testsuite summary for gettext-tools 0.21
-#============================================================================
-# TOTAL: 445
-# PASS:  290
-# SKIP:  36
-# XFAIL: 0
-# FAIL:  119
-# XPASS: 0
-# ERROR: 0
 set -x
   dir="$1"
   pfx="$2"

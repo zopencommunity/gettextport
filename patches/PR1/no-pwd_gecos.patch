@@ -13,25 +13,18 @@ index 22f5a50..1288dbc 100644
    pw.pw_shell = "/bin/sh";
  
 diff --git a/gettext-tools/src/msginit.c b/gettext-tools/src/msginit.c
-index 228d1d0..d0950d1 100644
+index 228d1d0..d673dee 100644
 --- a/gettext-tools/src/msginit.c
 +++ b/gettext-tools/src/msginit.c
-@@ -1100,6 +1100,7 @@ get_user_fullname ()
+@@ -1098,7 +1098,7 @@ get_user_pwd ()
+ static const char *
+ get_user_fullname ()
  {
- #if HAVE_PWD_H
+-#if HAVE_PWD_H
++#if HAVE_PWD_H && !defined(__MVS__)
    struct passwd *pwd = get_user_pwd ();
-+#ifndef __MVS__
    if (pwd != NULL)
      {
-       /* Return the pw_gecos field, up to the first comma (if any).  */
-@@ -1114,6 +1115,7 @@ get_user_fullname ()
- 
-       return result;
-     }
-+#endif
- #endif
- 
-   return NULL;
 diff --git a/libtextstyle/examples/color-hello/hello.c b/libtextstyle/examples/color-hello/hello.c
 index 5b5221d..e64b65a 100644
 --- a/libtextstyle/examples/color-hello/hello.c
