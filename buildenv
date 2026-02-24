@@ -10,7 +10,7 @@ export ZOPEN_DEV_DEPS="git make tar m4 perl autoconf automake help2man texinfo x
 
 export ZOPEN_EXTRA_CONFIGURE_OPTS='--disable-acl'
 
-export ZOPEN_CHECK_OPTS='-i check' # force make to keep going after first test suite has failures
+export ZOPEN_CHECK_OPTS='-i check -j\$ZOPEN_NUM_JOBS' # force make to keep going after first test suite has failures
 export ZOPEN_CHECK_TIMEOUT=30000 # 8 hours and a bit
 
 if [ "${ZOPEN_BUILD_LINE}x" = "STABLEx" ]; then
