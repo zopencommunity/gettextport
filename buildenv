@@ -1,5 +1,5 @@
 # bump: gettext-version /GETTEXT_VERSION="(.*)"/ https://ftp.gnu.org/gnu/gettext/|re:/href="gettext-([\d.]+).tar.gz"/$1/|semver:*
-GETTEXT_VERSION="0.21"
+GETTEXT_VERSION="1.0"
 
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_STABLE_URL="https://ftp.gnu.org/gnu/gettext/gettext-${GETTEXT_VERSION}.tar.gz"
@@ -19,18 +19,6 @@ fi
 
 zopen_check_results()
 {
-#
-# This runs a number of sub-directories of tests. We want to get 'gettext-tools' test results
-#============================================================================
-#Testsuite summary for gettext-tools 0.21
-#============================================================================
-# TOTAL: 445
-# PASS:  290
-# SKIP:  36
-# XFAIL: 0
-# FAIL:  119
-# XPASS: 0
-# ERROR: 0
 set -x
   dir="$1"
   pfx="$2"

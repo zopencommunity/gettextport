@@ -1,0 +1,45 @@
+diff --git a/libtextstyle/lib/libcroco/cr-om-parser.c b/libtextstyle/lib/libcroco/cr-om-parser.c
+index c862e25..36a6b94 100644
+--- a/libtextstyle/lib/libcroco/cr-om-parser.c
++++ b/libtextstyle/lib/libcroco/cr-om-parser.c
+@@ -61,9 +61,9 @@ static ParsingContext *new_parsing_context (void);
+ 
+ static void destroy_context (ParsingContext * a_ctxt);
+ 
+-static void unrecoverable_error (CRDocHandler * a_this);
++static void cr_om_parser_unrecoverable_error (CRDocHandler * a_this);
+ 
+-static void error (CRDocHandler * a_this);
++static void cr_om_parser_error (CRDocHandler * a_this);
+ 
+ static void property (CRDocHandler * a_this,
+                       CRString * a_name, 
+@@ -179,8 +179,8 @@ cr_om_parser_init_default_sac_handler (CROMParser * a_this)
+         sac_handler->property = property;
+         sac_handler->start_font_face = start_font_face;
+         sac_handler->end_font_face = end_font_face;
+-        sac_handler->error = error;
+-        sac_handler->unrecoverable_error = unrecoverable_error;
++        sac_handler->error = cr_om_parser_error;
++        sac_handler->unrecoverable_error = cr_om_parser_unrecoverable_error;
+         sac_handler->charset = charset;
+         sac_handler->start_page = start_page;
+         sac_handler->end_page = end_page;
+@@ -750,7 +750,7 @@ property (CRDocHandler * a_this,
+ }
+ 
+ static void
+-error (CRDocHandler * a_this)
++cr_om_parser_error (CRDocHandler * a_this)
+ {
+         enum CRStatus status = CR_OK;
+         ParsingContext *ctxt = NULL;
+@@ -768,7 +768,7 @@ error (CRDocHandler * a_this)
+ }
+ 
+ static void
+-unrecoverable_error (CRDocHandler * a_this)
++cr_om_parser_unrecoverable_error (CRDocHandler * a_this)
+ {
+         enum CRStatus status = CR_OK;
+         ParsingContext *ctxt = NULL;
