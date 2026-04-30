@@ -3,7 +3,7 @@ GETTEXT_VERSION="1.0"
 
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_STABLE_URL="https://ftp.gnu.org/gnu/gettext/gettext-${GETTEXT_VERSION}.tar.gz"
-export ZOPEN_STABLE_DEPS="curl gzip tar make m4 perl coreutils zoslib autoconf automake ncurses"
+export ZOPEN_STABLE_DEPS="make coreutils zoslib ncurses"
 
 export ZOPEN_DEV_URL="https://github.com/autotools-mirror/gettext.git"
 export ZOPEN_DEV_DEPS="git make tar m4 perl autoconf automake help2man texinfo xz ncurses"
@@ -46,6 +46,7 @@ if [ ! -z "\$ZOPEN_IN_ZOPEN_BUILD" ]; then
   export ZOPEN_EXTRA_CXXFLAGS="\${ZOPEN_EXTRA_CXXFLAGS} -I\$PWD/include"
   export ZOPEN_EXTRA_LDFLAGS="\${ZOPEN_EXTRA_LDFLAGS} -L\$PWD/lib"
   export ZOPEN_EXTRA_LIBS="\${ZOPEN_EXTRA_LIBS} -lintl"
+  export CMAKE_PREFIX_PATH="\$PWD/:\${CMAKE_PREFIX_PATH}"
 fi
 ZZ
 }
